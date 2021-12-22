@@ -1,0 +1,122 @@
+﻿<html lang="es-gt" class="">
+<head>
+    <title>TELEFONIA </title>
+    <link rel="icon" href="~/Recursos/Telefono.png" type="image/x-icon">
+
+    @* =====================
+                 CSS
+        =====================*@
+    <link href="~/Estilos/TelefoniaEstilos.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/Estilos/materialize.css" rel="stylesheet">
+
+    @* =======================
+                SCRIPTS
+        =======================*@
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/materialize.js"></script>
+    <script src="~/Scripts/Chart.js"></script>
+    <script src="/Scripts/chartjs-plugin-annotation.js?1.0.3"></script>
+    <script src="~/Scripts/Dashboard.js"></script>
+    <script src="~/Scripts/Login.js"></script>
+
+</head>
+<body onload="OnLoadSetting()">
+    
+    @* =======================
+               MODALES
+       =======================*@
+    <div id="Modal-Limite-Saldo" class="modal">
+        
+    </div>
+
+
+    <nav>
+        <div id="nav" class="nav-wrapper">
+            <a id="titulo-nav" href="" class="brand-logo" onclick="Recargar()"><i class="material-icons ">local_phone</i>DASHBOARD DE TELEFONIA </a>
+            <ul id="nav-mobile" class="right">
+                <li><input id="input-fecha-inicio" type="text" class="datepicker" placeholder="Fecha Inicio"></li>
+                <li><input id="input-fecha-fin" type="text" class="datepicker" placeholder="Fecha Fin"></li>
+                <li><a id="bt-buscar-fechas" class="waves-effect waves-light btn" onclick="BuscarFechas(document.getElementById('input-fecha-inicio').value,document.getElementById('input-fecha-fin').value)">BUSCAR</a></li>
+                <li><a style="" id="DescargarExcel" class="waves-effect waves-light btn" onclick="CrearExcel(document.getElementById('input-fecha-inicio').value,document.getElementById('input-fecha-fin').value)">DESCARGAR EXCEL </a></li>
+                <li><a href="#"><i class="material-icons " onclick="Leave()">exit_to_app</i> </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+
+        <div class="row">
+            <div id="tabla-estados" class="col l7">
+
+                <center>
+                    <h5><b id="TituloTransacciones">Total de transacciones de fecha 12-10-2021</b></h5>
+                </center>
+                <table class="highlight centered z-depth-2">
+                    <thead>
+                        <tr>
+                            <th>Denegadas</th>
+                            <th>No Enviadas</th>
+                            <th>Enviadas</th>
+                            <th>Max Vendido</th>
+                            <th>Min Vendido</th>
+                            <th>Total Transacciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td id="recargas-denegadas"></td>
+                            <td id="recargas-no-enviadas"></td>
+                            <td id="recargas-enviadas"></td>
+                            <td id="recargas-max-vendido"></td>
+                            <td id="recargas-min-vendido"></td>
+                            <td id="recargas-total-transacciones"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+
+                <center>
+                    <h5><b id="TituloTotalVendidoMes">Total vendido del mes</b></h5>
+                </center>
+                <table class="highlight centered z-depth-2">
+                    <thead>
+                        <tr>
+                            <th>Claro</th>
+                            <th>Tigo</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td id="TotalClaro"></td>
+                            <td id="TotalTigo"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+          
+            <div id="div-SaldoChart" class="col l5">
+                <canvas id="SaldoChart" class=" z-depth-2"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div id="" class="col l4 ">
+                <br />
+                <BR />
+                <BR />
+                <center style="padding-left:25%;padding-right:25%">
+                    <h5><b>Configurar Limites de Compra de Saldo</b></h5>
+                    <a id="bt-buscar-fechas" class="waves-effect waves-light btn modal-trigger z-depth-2"  href="#Modal-Limite-Saldo" onclick="ModalSaldo(0,null,null,null)"> <i class="material-icons">settings</i></a>
+                </center>
+            </div>
+            <div id="div-otro" class="col l8 chart-container">
+                <canvas class="col l12 m12 s12 lx12 z-depth-2" id="GraficaLineal" style="height: 40vh; display: block;" width="1032" height="319"></canvas>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
